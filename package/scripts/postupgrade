@@ -1,0 +1,4 @@
+#!/bin/sh
+
+# DSM preserves the package var directory across upgrades.
+exit 0

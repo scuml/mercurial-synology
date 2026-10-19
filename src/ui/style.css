@@ -1,0 +1,475 @@
+/* @override
+    https://mitchell.familyds.org:5001/webman/3rdparty/mercurialserver/style.css?* */
+
+.hg-status-line {
+    min-height: 28px;
+    line-height: 28px;
+    padding: 2px 4px;
+}
+
+.hg-window-icon {
+    background-image: url(images/mercurialserver-neon-16.png) !important;
+    background-position: left center !important;
+    background-repeat: no-repeat !important;
+    background-size: 16px 16px !important;
+}
+
+.hg-status-running {
+    animation: hg-status-pulse 2.2s ease-in-out infinite;
+}
+
+.hg-empty-state {
+    box-sizing: border-box;
+    margin: 22px;
+    padding: 30px 24px;
+    border: 1px dashed #b8c2cc;
+    border-radius: 6px;
+    background: #f8fafc;
+    color: #66727f;
+    line-height: 1.55;
+    text-align: center;
+}
+
+.hg-empty-title {
+    margin-bottom: 5px;
+    color: #263746;
+    font-size: 15px;
+    font-weight: 600;
+}
+
+/* Raised, old-school tabs: each label is a distinct tab connected to its page. */
+.hg-tabs .x-tab-panel-header {
+    border: 0;
+}
+
+.hg-tabs .x-tab-strip-wrap {
+    border-bottom: 1px solid #89949e;
+    background: transparent;
+}
+
+.hg-tabs .x-tab-strip-top {
+    display: flex;
+    align-items: flex-end;
+    gap: 4px;
+    margin: 7px 0 0 11px;
+    border-bottom: 0 !important;
+}
+
+.hg-tabs .x-tab-strip-top li {
+    margin: 0;
+}
+
+.x-tab-strip-top .x-tab-left{
+    padding-right:0px;  /* Shrink tab padding */
+}
+
+
+
+.hg-tabs .x-tab-strip-top .x-tab-right,
+.hg-tabs .x-tab-strip-top .x-tab-left,
+.hg-tabs .x-tab-strip-top .x-tab-strip-inner {
+    background: none !important;
+}
+
+.hg-tabs .x-tab-strip-top .x-tab-strip-inner {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 27px;
+    padding: 0;
+    border: 1px solid #99a4ae;
+    border-bottom: 0;
+    border-radius: 6px 6px 0 0;
+    background: linear-gradient(#fafafb 0%, #e2e2e2 100%) !important;
+    box-shadow: inset 0 1px #fff, 0 -1px 2px rgba(45, 56, 66, .13);
+}
+
+.hg-tabs .x-tab-strip-top .x-tab-strip-text {
+    height: 27px;
+    padding: 0;
+    margin: 0 5px;
+    color: #44505b;
+    font-weight: 600;
+    line-height: 27px;
+    text-shadow: 0 1px rgba(255, 255, 255, .9);
+}
+
+.hg-tabs .x-tab-strip-top .x-tab-strip-active .x-tab-strip-inner {
+    position: relative;
+    top: 1px;
+    border-color: #7f8b96;
+    background: linear-gradient(#fff, #f4f6f8) !important;
+    box-shadow: inset 0 2px #fff, 0 -1px 3px rgba(45, 56, 66, .18);
+}
+
+.hg-tabs .x-tab-strip-top .x-tab-strip-active .x-tab-strip-text {
+    color: #1f2b35;
+}
+
+/* Mac OS X 10.7-style source-list tables. */
+.hg-grid {
+    border-color: #9ca6b0 !important;
+    border-radius: 5px;
+    background: #fff;
+    box-shadow: 0 1px 2px rgba(28, 39, 49, .16);
+}
+
+.hg-grid .x-grid3-header {
+    border-bottom: 1px solid #919aa4;
+    background: linear-gradient(#fafafa, #c9cdd1) !important;
+}
+
+.hg-grid .x-grid3-hd-row td {
+    border-right: 1px solid #adb4bb;
+    border-left-color: #f7f7f7;
+    background: linear-gradient(#fafafa, #c9cdd1) !important;
+}
+
+.hg-grid .x-grid3-hd-row td:last-child {
+    border-right: 0;
+}
+
+.hg-grid .x-grid3-hd-inner {
+    padding-top: 5px;
+    padding-bottom: 5px;
+    color: #303840;
+    font-weight: 600;
+    text-shadow: 0 1px #fff;
+}
+
+.hg-grid .x-grid3-row {
+    border-color: #d9dee3;
+    background: #fff;
+}
+
+.hg-grid .x-grid3-row-alt {
+    background: #edf3f8;
+}
+
+.hg-grid .x-grid3-row-over {
+    background: #e4edf5;
+}
+
+.hg-grid .x-grid3-row-selected {
+    border-color: #2e68ac;
+    background: linear-gradient(#6da2df, #3f7fc8) !important;
+}
+
+.hg-grid .x-grid3-row-selected .x-grid3-cell-inner {
+    color: #fff;
+    text-shadow: 0 1px rgba(0, 0, 0, .28);
+}
+
+.hg-grid .x-grid3-cell-inner {
+    padding-top: 6px;
+    padding-bottom: 6px;
+    color: #28333d;
+}
+
+.hg-grid .x-grid3-scroller {
+    background: #fff;
+}
+
+/* DSM toolbar actions are intentionally rendered as tactile, beveled buttons. */
+.hg-grid .x-toolbar,
+.hg-folder-dialog .x-toolbar {
+    padding: 7px 8px;
+    border-color: #9ca6b0;
+    background: linear-gradient(#f2f4f6, #cbd1d7) !important;
+    box-shadow: inset 0 1px rgba(255, 255, 255, .85);
+}
+
+.hg-grid .x-toolbar .x-btn,
+.hg-folder-dialog .x-toolbar .x-btn {
+    margin-right: 6px !important;
+    border: 1px solid #68737e !important;
+    border-radius: 5px !important;
+    background: linear-gradient(#fff 0%, #f6f7f8 44%, #c8ced4 52%, #e1e5e8 100%) !important;
+    box-shadow:
+        inset 0px 1px 0 rgba(255, 255, 255, .52),
+        0 1px 0px rgba(255, 255, 255, .84);
+    border-collapse: separate;
+}
+
+.hg-grid .x-toolbar .x-btn td,
+.hg-grid .x-toolbar .x-btn tbody,
+.hg-folder-dialog .x-toolbar .x-btn td,
+.hg-folder-dialog .x-toolbar .x-btn tbody {
+    background: none !important;
+}
+
+.hg-grid .x-toolbar .x-btn .x-btn-text,
+.hg-folder-dialog .x-toolbar .x-btn .x-btn-text {
+
+display: flex !important;
+    align-items: center;
+    justify-content: center;
+    gap: 7px;
+    min-width: 0;
+    height: 27px !important;
+    min-height: 27px;
+    padding: 0 11px !important;
+    border: 0 !important;
+    color: #1f2b35 !important;
+    font-weight: 600;
+    line-height: 27px !important;
+    text-shadow: 0 1px #fff !important;
+}
+
+.hg-grid .x-toolbar .x-btn-over,
+.hg-folder-dialog .x-toolbar .x-btn-over {
+    border-color: #456d91 !important;
+    background: linear-gradient(#fff 0%, #f5fbff 44%, #a9c9e5 52%, #d4e7f5 100%) !important;
+    box-shadow:
+        inset 0 1px 0 #fff,
+        inset 1px 0 0 rgba(255, 255, 255, .78),
+        inset -1px 0 0 rgba(255, 255, 255, .58),
+        inset 0 -1px 0 rgba(255, 255, 255, .46),
+        0 1px 0 rgba(0, 0, 0, .68),
+        0 2px 5px rgba(0, 0, 0, .38) !important;
+}
+
+.hg-grid .x-toolbar .x-btn-click,
+.hg-grid .x-toolbar .x-btn-pressed,
+.hg-folder-dialog .x-toolbar .x-btn-click,
+.hg-folder-dialog .x-toolbar .x-btn-pressed {
+    background: linear-gradient(#aeb7c0, #e6eaed) !important;
+    box-shadow:
+        inset 0 2px 4px rgba(0, 0, 0, .48),
+        inset 0 -1px 0 rgba(255, 255, 255, .58),
+        0 1px 0 rgba(255, 255, 255, .7) !important;
+    transform: translateY(1px);
+}
+
+.hg-grid .x-toolbar .hg-toolbar-button-primary {
+    border-color: #285d91 !important;
+    background: linear-gradient(#8dc9fa 0%, #65ace7 44%, #2e79bd 52%, #579bd6 100%) !important;
+}
+
+.hg-grid .x-toolbar .hg-toolbar-button-primary .x-btn-text {
+    color: #fff !important;
+    text-shadow: 0 -1px rgba(0, 50, 92, .85) !important;
+}
+
+.hg-grid .x-toolbar .hg-toolbar-button-primary.x-btn-over {
+    background: linear-gradient(#a6d8ff 0%, #78bbed 44%, #3988cc 52%, #6aace1 100%) !important;
+}
+
+.hg-grid .x-toolbar .hg-toolbar-button-danger {
+    border-color: #8f4e50 !important;
+    background: linear-gradient(#fff 0%, #fff5f5 44%, #dfb5b6 52%, #f0d5d6 100%) !important;
+}
+
+.hg-grid .x-toolbar .hg-toolbar-button-danger.x-btn-over {
+    background: linear-gradient(#fff 0%, #fff1f1 44%, #d99c9e 52%, #edc3c4 100%) !important;
+}
+
+.hg-icon {
+    background-image: none !important;
+}
+
+.hg-icon::before {
+    width: 18px;
+    height: 18px;
+    flex: 0 0 18px;
+    content: "";
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: 18px 18px;
+}
+
+.hg-icon-repository-add::before { background-image: url(images/action-mac8-full-repository-add.png); }
+.hg-icon-refresh::before { background-image: url(images/action-mac8-full-refresh.png); }
+.hg-icon-user-add::before { background-image: url(images/action-mac8-full-user-add.png); }
+.hg-icon-password::before { background-image: url(images/action-mac8-full-password.png); }
+.hg-icon-delete::before { background-image: url(images/action-mac8-full-delete.png); }
+.hg-icon-folder::before { background-image: url(images/action-mac8-full-folder.png); }
+.hg-icon-folder-up::before { background-image: url(images/action-mac8-full-folder-up.png); }
+
+/* Action icons live inside the field edge, like a compact classic Mac button. */
+.hg-overview .x-form-field-wrap .hg-copy-trigger,
+.hg-overview .x-form-field-wrap .hg-folder-trigger {
+    box-sizing: border-box;
+    width: 28px !important;
+    height: 22px !important;
+    border: 1px solid #68737e !important;
+    border-left: 0px!important;
+    border-radius: 0 4px 4px 0;
+    background: linear-gradient(to bottom, #dfe4e8 0%, #C6C6C6 100%) center no-repeat #dfe4e8 !important;
+    background-size: 18px 18px !important;
+    cursor: pointer;
+
+}
+
+.hg-overview .x-form-field-wrap .hg-copy-trigger {
+    background-image: url(images/clipboard.png) !important;
+}
+
+.hg-overview .x-form-field-wrap .hg-folder-trigger {
+    background-image: url(images/action-mac8-full-folder.png) !important;
+}
+
+.hg-overview .x-form-field-wrap .hg-copy-trigger:hover,
+.hg-overview .x-form-field-wrap .hg-folder-trigger:hover {
+    border-color: #3d6f9b !important;
+    background-color: #c9dfef !important;
+}
+
+.hg-overview .x-form-field-wrap .hg-copy-trigger:active,
+.hg-overview .x-form-field-wrap .hg-folder-trigger:active {
+    background-color: #b7c0c8 !important;
+    box-shadow:
+        inset 0 2px 4px rgba(0, 0, 0, .45),
+        inset 0 -1px 0 rgba(255, 255, 255, .58) !important;
+}
+
+.hg-folder-dialog .x-form-item {
+    margin-bottom: 10px;
+}
+
+.hg-folder-dialog .hg-folder-grid {
+    margin-top: 6px;
+}
+
+.hg-folder-empty {
+    padding: 34px 18px;
+    color: #6b7680;
+    text-align: center;
+}
+
+/* Visible, Lion-era modal windows for forms, alerts, and confirmations. */
+.hg-dialog,
+.x-window-dlg {
+    overflow: hidden !important;
+    border: 1px solid #4e5964 !important;
+    border-radius: 9px !important;
+    background: #d9dde2 !important;
+    box-shadow:
+        0 1px 0 rgba(255, 255, 255, .72),
+        0 18px 48px rgba(0, 0, 0, .58),
+        0 3px 10px rgba(0, 0, 0, .42) !important;
+}
+
+.hg-dialog .x-window-tl,
+.hg-dialog .x-window-tr,
+.hg-dialog .x-window-tc,
+.hg-dialog .x-window-ml,
+.hg-dialog .x-window-mr,
+.hg-dialog .x-window-mc,
+.hg-dialog .x-window-bl,
+.hg-dialog .x-window-br,
+.hg-dialog .x-window-bc,
+.x-window-dlg .x-window-tl,
+.x-window-dlg .x-window-tr,
+.x-window-dlg .x-window-tc,
+.x-window-dlg .x-window-ml,
+.x-window-dlg .x-window-mr,
+.x-window-dlg .x-window-mc,
+.x-window-dlg .x-window-bl,
+.x-window-dlg .x-window-br,
+.x-window-dlg .x-window-bc {
+    background: transparent !important;
+}
+
+.hg-dialog .x-window-header,
+.x-window-dlg .x-window-header {
+    box-sizing: border-box;
+    min-height: 34px;
+    padding: 8px 12px !important;
+    border-bottom: 1px solid #808a94 !important;
+    background: linear-gradient(#f7f8f9 0%, #dfe3e7 48%, #bcc3ca 52%, #d3d8dd 100%) !important;
+    box-shadow: inset 0 1px #fff;
+}
+
+.hg-dialog .x-window-header-text,
+.x-window-dlg .x-window-header-text {
+    color: #202a33 !important;
+    font-size: 13px !important;
+    font-weight: 600 !important;
+    text-shadow: 0 1px #fff !important;
+}
+
+.hg-dialog .x-window-body,
+.x-window-dlg .x-window-body {
+    border: 0 !important;
+    background: #f4f5f6 !important;
+    color: #25313b !important;
+}
+
+.hg-dialog .x-form-item-label {
+    color: #35414c !important;
+    font-weight: 600;
+}
+
+.hg-dialog .x-form-text {
+    border: 1px solid #7d8791 !important;
+    border-radius: 4px;
+    background: #fff !important;
+    box-shadow:
+        inset 0 1px 3px rgba(0, 0, 0, .22),
+        0 1px 0 rgba(255, 255, 255, .85);
+    color: #18232d !important;
+}
+
+.hg-dialog .x-form-text:focus {
+    border-color: #397ebd !important;
+    box-shadow:
+        inset 0 1px 3px rgba(0, 0, 0, .2),
+        0 0 0 2px rgba(67, 143, 209, .3);
+}
+
+.hg-dialog .x-panel-btns,
+.x-window-dlg .x-panel-btns {
+    padding: 9px 10px !important;
+    border-top: 1px solid #a6adb4 !important;
+    background: linear-gradient(#e9ecef, #cdd2d7) !important;
+    box-shadow: inset 0 1px #fff;
+}
+
+.hg-dialog .x-panel-btns .x-btn,
+.x-window-dlg .x-panel-btns .x-btn {
+    margin-left: 7px !important;
+    border: 1px solid #68737e !important;
+    border-radius: 5px !important;
+    background: linear-gradient(#fff 0%, #f6f7f8 44%, #c8ced4 52%, #e1e5e8 100%) !important;
+    box-shadow:
+        inset 0 1px 0 #fff,
+        inset 1px 0 0 rgba(255, 255, 255, .7),
+        inset -1px 0 0 rgba(255, 255, 255, .5),
+        0 1px 0 rgba(0, 0, 0, .55),
+        0 2px 3px rgba(0, 0, 0, .24) !important;
+}
+
+.hg-dialog .x-panel-btns .x-btn td,
+.hg-dialog .x-panel-btns .x-btn tbody,
+.x-window-dlg .x-panel-btns .x-btn td,
+.x-window-dlg .x-panel-btns .x-btn tbody {
+    background: none !important;
+}
+
+.hg-dialog .x-panel-btns .x-btn-text,
+.x-window-dlg .x-panel-btns .x-btn-text {
+    height: 25px !important;
+    padding: 0 13px !important;
+    border: 0 !important;
+    color: #202b35 !important;
+    font-weight: 600;
+    line-height: 25px !important;
+    text-shadow: 0 1px #fff !important;
+}
+
+.hg-dialog .x-panel-btns .x-btn-over,
+.x-window-dlg .x-panel-btns .x-btn-over {
+    border-color: #3d6f9b !important;
+    background: linear-gradient(#fff 0%, #f4faff 44%, #a9c9e5 52%, #d4e7f5 100%) !important;
+}
+
+.ext-el-mask {
+    background: #17212b !important;
+    opacity: .42 !important;
+}
+
+@keyframes hg-status-pulse {
+    0%, 100% { opacity: 1; }
+    50% { opacity: .62; }
+}

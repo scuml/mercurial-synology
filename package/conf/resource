@@ -1,0 +1,15 @@
+{
+  "port-config": {
+    "protocol-file": "port_conf/mercurialserver.sc"
+  },
+  "web-config": {
+    "nginx-static-config": {
+      "enable": [
+        {
+          "type": "dsm",
+          "relpath": "nginx/mercurialserver.conf"
+        }
+      ]
+    }
+  }
+}

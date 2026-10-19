@@ -1,0 +1,152 @@
+#!/bin/sh
+
+PACKAGE="mercurialserver"
+PKGDEST="${SYNOPKG_PKGDEST:-/var/packages/${PACKAGE}/target}"
+PKGVAR="${SYNOPKG_PKGVAR:-/var/packages/${PACKAGE}/var}"
+PID_FILE="${PKGVAR}/manager.pid"
+LOG_FILE="${PKGVAR}/manager-console.log"
+
+# Any Python 3.9+ on the box will do, whichever package provides it.
+#
+# DSM ships these as separately named packages - Python3.9 and Python3.12 have
+# package ids of their own, and the older "Python3" package is 3.8 on many
+# systems. So the name is not searched for; every candidate is run and asked
+# its own version, which is the thing actually being depended on. Unmatched
+# globs stay literal in sh and are dropped by the -x test.
+find_python() {
+    for candidate in \
+        "${MERCURIAL_SERVER_PYTHON:-}" \
+        /var/packages/Python3.12/target/usr/local/bin/python3.12 \
+        /var/packages/Python3.12/target/usr/bin/python3.12 \
+        /var/packages/Python3.12/target/bin/python3.12 \
+        /var/packages/python312/target/bin/python3.12 \
+        /var/packages/Python3.11/target/usr/local/bin/python3.11 \
+        /var/packages/Python3.11/target/usr/bin/python3.11 \
+        /var/packages/python311/target/bin/python3.11 \
+        /var/packages/Python3.10/target/usr/local/bin/python3.10 \
+        /var/packages/Python3.10/target/usr/bin/python3.10 \
+        /var/packages/python310/target/bin/python3.10 \
+        /var/packages/Python3.9/target/usr/local/bin/python3.9 \
+        /var/packages/Python3.9/target/usr/bin/python3.9 \
+        /var/packages/python39/target/bin/python3.9 \
+        /var/packages/Python3*/target/usr/local/bin/python3 \
+        /var/packages/Python3*/target/usr/local/bin/python3* \
+        /var/packages/Python3*/target/usr/bin/python3* \
+        /var/packages/Python3*/target/bin/python3 \
+        /var/packages/Python3*/target/bin/python3* \
+        /var/packages/python3*/target/bin/python3* \
+        /usr/local/bin/python3.12 \
+        /usr/local/bin/python3.11 \
+        /usr/local/bin/python3.10 \
+        /usr/local/bin/python3.9 \
+        /usr/local/bin/python3* \
+        /usr/bin/python3
+    do
+        [ -n "$candidate" ] || continue
+        if [ -x "$candidate" ] && "$candidate" -c 'import sys; raise SystemExit(sys.version_info < (3, 9))' 2>/dev/null; then
+            echo "$candidate"
+            return 0
+        fi
+    done
+    return 1
+}
+
+read_pid() {
+    if [ -f "$PID_FILE" ]; then
+        sed -n '1p' "$PID_FILE"
+    fi
+}
+
+is_running() {
+    process_id="$(read_pid)"
+    [ -n "$process_id" ] && kill -0 "$process_id" 2>/dev/null
+}
+
+start_service() {
+    if is_running; then
+        return 0
+    fi
+    python_bin="$(find_python)" || {
+        echo "No Python 3.9 or newer was found. Install Python 3.12 or Python 3.9 "\
+             "from Package Center, or set MERCURIAL_SERVER_PYTHON to a suitable "\
+             "interpreter." >&2
+        return 1
+    }
+    mkdir -p "$PKGVAR"
+    rm -f "$PID_FILE"
+    mkdir -p "$PKGVAR/runtime/tmp" "$PKGVAR/runtime/pycache"
+    HOME="$PKGVAR/runtime" TMPDIR="$PKGVAR/runtime/tmp" \
+        PYTHONPYCACHEPREFIX="$PKGVAR/runtime/pycache" \
+        PYTHONNOUSERSITE=1 HGMODULEPOLICY=py PYTHONUNBUFFERED=1 \
+        nohup "$python_bin" "$PKGDEST/app/mercurial_server/server.py" \
+        --var-dir "$PKGVAR" \
+        --static-dir "$PKGDEST/www" \
+        --hg-script "$PKGDEST/vendor/mercurial/hg" \
+        --host 127.0.0.1 \
+        --port 8090 \
+        --backend-port 8091 \
+        >>"$LOG_FILE" 2>&1 &
+    process_id=$!
+    echo "$process_id" > "$PID_FILE"
+    attempts=0
+    while [ "$attempts" -lt 40 ]; do
+        if ! kill -0 "$process_id" 2>/dev/null; then
+            rm -f "$PID_FILE"
+            return 1
+        fi
+        if "$python_bin" -c 'import socket; s=socket.create_connection(("127.0.0.1",8090),.2); s.close()' 2>/dev/null; then
+            return 0
+        fi
+        attempts=$((attempts + 1))
+        sleep 1
+    done
+    kill "$process_id" 2>/dev/null || true
+    rm -f "$PID_FILE"
+    return 1
+}
+
+stop_service() {
+    process_id="$(read_pid)"
+    if [ -n "$process_id" ] && kill -0 "$process_id" 2>/dev/null; then
+        kill "$process_id" 2>/dev/null || true
+        attempts=0
+        while kill -0 "$process_id" 2>/dev/null && [ "$attempts" -lt 20 ]; do
+            attempts=$((attempts + 1))
+            sleep 1
+        done
+        if kill -0 "$process_id" 2>/dev/null; then
+            kill -9 "$process_id" 2>/dev/null || true
+        fi
+    fi
+    rm -f "$PID_FILE"
+    return 0
+}
+
+case "$1" in
+    start)
+        start_service
+        ;;
+    stop)
+        stop_service
+        ;;
+    status)
+        if is_running; then
+            exit 0
+        fi
+        if [ -f "$PID_FILE" ]; then
+            exit 1
+        fi
+        exit 3
+        ;;
+    prestart)
+        find_python >/dev/null || exit 1
+        exit 0
+        ;;
+    prestop)
+        exit 0
+        ;;
+    *)
+        echo "Usage: $0 {start|stop|status|prestart|prestop}" >&2
+        exit 1
+        ;;
+esac

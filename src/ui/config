@@ -1,0 +1,19 @@
+{
+  "MercurialServer28.js": {
+    "SYNO.SDS.MercurialServer.Instance": {
+      "type": "app",
+      "title": "Mercurial Server",
+      "desc": "Manage Mercurial repositories, users, and service status",
+      "icon": "images/mercurialserver-neon-{0}.png",
+      "allowMultiInstance": false,
+      "allUsers": false,
+      "appWindow": "SYNO.SDS.MercurialServer.Main",
+      "depend": ["SYNO.SDS.MercurialServer.Main"]
+    },
+    "SYNO.SDS.MercurialServer.Main": {
+      "type": "lib",
+      "title": "Mercurial Server",
+      "icon": "images/mercurialserver-neon-{0}.png"
+    }
+  }
+}

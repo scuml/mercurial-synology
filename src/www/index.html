@@ -1,0 +1,125 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Mercurial Server</title>
+  <link rel="stylesheet" href="/admin/styles.css">
+</head>
+<body>
+  <main class="shell">
+    <header class="topbar">
+      <a class="brand" href="/admin/" aria-label="Mercurial Server home">
+        <span class="brand-mark">Hg</span>
+        <span><strong>Mercurial Server</strong><small>Synology repository host</small></span>
+      </a>
+      <button id="logout-button" class="button quiet hidden" type="button">Sign out</button>
+    </header>
+
+    <section id="setup-view" class="auth-card hidden">
+      <p class="eyebrow">First-time setup</p>
+      <h1>Create the administrator</h1>
+      <p class="lede">This account manages the server and can also clone and push repositories.</p>
+      <form id="setup-form" class="stack">
+        <label>Username<input name="username" autocomplete="username" required maxlength="64"></label>
+        <label>Password<input name="password" type="password" autocomplete="new-password" required minlength="12"></label>
+        <p class="hint">Use at least 12 characters.</p>
+        <button class="button primary" type="submit">Finish setup</button>
+      </form>
+    </section>
+
+    <section id="login-view" class="auth-card hidden">
+      <p class="eyebrow">Administration</p>
+      <h1>Welcome back</h1>
+      <p class="lede">Sign in with a Mercurial Server administrator account.</p>
+      <form id="login-form" class="stack">
+        <label>Username<input name="username" autocomplete="username" required></label>
+        <label>Password<input name="password" type="password" autocomplete="current-password" required></label>
+        <button class="button primary" type="submit">Sign in</button>
+      </form>
+    </section>
+
+    <section id="dashboard" class="hidden">
+      <div class="hero">
+        <div>
+          <p class="eyebrow">Service status</p>
+          <div class="status-line">
+            <span id="status-dot" class="status-dot"></span>
+            <h1 id="status-title">Checking…</h1>
+          </div>
+          <p id="status-detail" class="lede">Reading the server state.</p>
+        </div>
+        <div class="actions">
+          <button id="start-button" class="button primary" type="button">Start server</button>
+          <button id="stop-button" class="button danger" type="button">Stop server</button>
+        </div>
+      </div>
+
+      <div id="notice" class="notice hidden" role="status"></div>
+
+      <div class="dashboard-grid">
+        <section class="panel repositories-panel">
+          <div class="panel-heading">
+            <div><p class="eyebrow">Repositories</p><h2>Hosted projects</h2></div>
+            <span id="repo-count" class="count">0</span>
+          </div>
+          <form id="repo-form" class="inline-form">
+            <input name="name" placeholder="team/project" aria-label="New repository name" required>
+            <button class="button" type="submit">Create repository</button>
+          </form>
+          <div id="repo-list" class="list"></div>
+        </section>
+
+        <aside class="side-stack">
+          <section class="panel">
+            <p class="eyebrow">Storage</p>
+            <h2>Repository location</h2>
+            <form id="storage-form" class="stack compact">
+              <label>Absolute path<input id="repo-path" name="repo_path" required spellcheck="false"></label>
+              <p id="storage-state" class="hint"></p>
+              <button class="button" type="submit">Save location</button>
+            </form>
+          </section>
+
+          <section class="panel">
+            <p class="eyebrow">Connection</p>
+            <h2>Clone URL</h2>
+            <div class="code-row">
+              <code id="clone-command">hg clone …</code>
+              <button id="copy-button" class="icon-button" type="button" title="Copy command">Copy</button>
+            </div>
+            <p class="hint">Replace <code>REPOSITORY</code> with a name shown here.</p>
+          </section>
+        </aside>
+      </div>
+
+      <section class="panel users-panel">
+        <div class="panel-heading">
+          <div><p class="eyebrow">Access</p><h2>Server users</h2></div>
+        </div>
+        <form id="user-form" class="user-form">
+          <label>Username<input name="username" required maxlength="64"></label>
+          <label>Password<input name="password" type="password" required minlength="12" autocomplete="new-password"></label>
+          <label class="checkbox"><input name="admin" type="checkbox"><span>Administrator</span></label>
+          <button class="button" type="submit">Add user</button>
+        </form>
+        <div id="user-list" class="list"></div>
+      </section>
+    </section>
+  </main>
+
+  <dialog id="password-dialog">
+    <form id="password-form" class="stack">
+      <div><p class="eyebrow">Credentials</p><h2>Change password</h2></div>
+      <input name="username" type="hidden">
+      <label>New password<input name="password" type="password" required minlength="12" autocomplete="new-password"></label>
+      <div class="dialog-actions">
+        <button id="cancel-password" class="button quiet" type="button">Cancel</button>
+        <button class="button primary" type="submit">Update password</button>
+      </div>
+    </form>
+  </dialog>
+
+  <script src="/admin/app.js" defer></script>
+</body>
+</html>

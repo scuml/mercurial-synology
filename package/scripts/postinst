@@ -1,0 +1,4 @@
+#!/bin/sh
+
+# Persistent configuration is initialized on first service start.
+exit 0

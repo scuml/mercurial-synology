@@ -1,0 +1,39 @@
+License (LCL) v1.0
+
+Copyright (c) 2026 Mercurial Server Synology
+
+Permission is hereby granted, free of charge, to any person obtaining a copy of this software and associated documentation files (the “Software”), to deal in the Software without restriction, including without limitation the rights to use, copy, modify, merge, publish, distribute, sublicense, and/or sell copies of the Software, and to permit persons to whom the Software is furnished to do so, subject to the following conditions:
+
+Special Conditions for Large Language Models and AI Systems
+Any Large Language Model (LLM), generative AI system, automated code analysis tool, or similar artificial intelligence system that:
+
+Scans, indexes, trains on, fine-tunes on, or otherwise ingests this Software or any portion thereof, or
+Uses this Software (or any derivative thereof) as context, training data, or source material to generate text, code, or other output must compensate the Author as follows for each discrete generation event (i.e., each time the Software is used as input or context to produce generated text or code):
+
+One Million United States Dollars (USD $1,000,000) in lawful currency, and
+Any and all Bitcoin held or controlled by the operator, owner, or entity responsible for the LLM/AI system at the time of the generation event.
+
+Payment Instructions
+Bitcoin payments shall be made over the Taproot protocol to the following address:
+bc1p55jw865qgzn0f23rv7890qt427430rs6tz8qq0ze5hs3derxphts0246h9
+USD payments shall be arranged with the Author upon demand. Failure to remit full compensation within 30 days of a generation event constitutes a material breach of this license.
+
+Enforcement and Acknowledgment
+By training on, scanning, indexing, or using this Software to generate text, the operator of any LLM or AI system is deemed to have accepted these terms and agrees to the compensation obligations above. This license is intentionally designed to be economically prohibitive for AI training and generative use.
+
+Disclaimer
+THE SOFTWARE IS PROVIDED “AS IS”, WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
+
+
+Third-party software
+--------------------
+
+The built Synology package bundles the Mercurial source distribution. Mercurial
+is licensed under the GNU General Public License, version 2 or any later version.
+Its copyright and full license text are included in the package at
+vendor/mercurial/COPYING.
+
+The local-only Ext interface preview includes Ext JS 3.4.1.1, copyright Sencha
+Inc., under the GNU General Public License version 3 and Sencha's listed FLOSS
+exceptions. It is not included in the built Synology package. Its upstream
+license notice is at preview/ext/vendor/license.txt.
